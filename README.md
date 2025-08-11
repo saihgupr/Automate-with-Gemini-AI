@@ -1,4 +1,4 @@
-# HA Automation AI 🤖
+# Automation AI 🤖
 
 > Create Home Assistant automations using natural language commands powered by Google's Gemini AI
 
