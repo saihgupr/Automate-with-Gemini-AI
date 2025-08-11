@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# automation_creator.sh
+# automate_ai.sh
 # Creates Home Assistant automations from natural language commands using Gemini.
 
 set -e # Exit immediately if a command exits with a non-zero status.

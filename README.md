@@ -1,4 +1,4 @@
-# Automation AI 🤖
+# Automate AI 🤖
 
 > Create Home Assistant automations using natural language commands powered by Google's Gemini AI
 
@@ -30,8 +30,8 @@ Transform your automation ideas into working Home Assistant code with simple Eng
 
 1. **Clone the repository:**
    ```bash
-   git clone https://github.com/saihgupr/automation_ai.git
-   cd automation_ai
+   git clone https://github.com/saihgupr/automate_ai.git
+   cd automate_ai
    ```
 
 2. **Set up configuration:**
@@ -57,7 +57,7 @@ Transform your automation ideas into working Home Assistant code with simple Eng
 5. **Add shell command to Home Assistant** (in `configuration.yaml`):
    ```yaml
    shell_command:
-     delete_temporary_automation: "/share/scripts/automation_creator/delete_automation.sh '{{ id }}'"
+     delete_temporary_automation: "/share/scripts/automate_ai/delete_automation.sh '{{ id }}'"
    ```
 
 ## 📖 Usage
@@ -65,7 +65,7 @@ Transform your automation ideas into working Home Assistant code with simple Eng
 ### Interactive Mode
 
 ```bash
-./automation_creator.sh
+./automate_ai.sh
 ```
 
 Then enter your automation command when prompted.
@@ -73,9 +73,9 @@ Then enter your automation command when prompted.
 ### Command Line Mode
 
 ```bash
-./automation_creator.sh "Turn on the living room lights when motion is detected"
-./automation_creator.sh "Turn off all lights at 11 PM"
-./automation_creator.sh "Turn the bedroom light blue for 5 minutes"
+./automate_ai.sh "Turn on the living room lights when motion is detected"
+./automate_ai.sh "Turn off all lights at 11 PM"
+./automate_ai.sh "Turn the bedroom light blue for 5 minutes"
 ```
 
 ### Examples
@@ -88,7 +88,7 @@ Then enter your automation command when prompted.
 
 ## 🛠️ Scripts
 
-- **`automation_creator.sh`** - Main script for creating automations
+- **`automate_ai.sh`** - Main script for creating automations
 - **`delete_automation.sh`** - Deletes automations via REST API (called by temporary automations)
 - **`cleanup_orphaned_automations.sh`** - Removes orphaned automations from HA UI
 

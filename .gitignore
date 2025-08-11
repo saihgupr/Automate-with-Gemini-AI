@@ -1,6 +1,9 @@
 # Configuration files with sensitive data
 config.sh
 
+# Project directory name
+automation_creator/
+
 # Log files
 *.log
 delete_automation.log
