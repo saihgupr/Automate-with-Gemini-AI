@@ -3,6 +3,7 @@ config.sh
 
 # Project directory name
 automation_creator/
+automate_ai/
 
 # Log files
 *.log

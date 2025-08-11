@@ -1,4 +1,4 @@
-# Automate AI 🤖
+# Automate_AI 🤖
 
 > Create Home Assistant automations using natural language commands powered by Google's Gemini AI
 
@@ -49,7 +49,7 @@ Transform your automation ideas into working Home Assistant code with simple Eng
 
 4. **Make scripts executable:**
    ```bash
-   chmod +x automation_creator.sh
+   chmod +x automate_ai.sh
    chmod +x delete_automation.sh
    chmod +x cleanup_orphaned_automations.sh
    ```
