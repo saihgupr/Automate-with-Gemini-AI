@@ -1,0 +1,9 @@
+Analyze the user's command for a Home Assistant automation. Determine if the user wants the automation to be permanent or temporary (i.e., run only once and then be deleted).
+
+- If the command implies it should run only once (e.g., using words like "once", "just this time", "for now"), respond with the single word: TEMPORARY
+- Otherwise, respond with the single word: PERMANENT
+
+Do not add any other text or explanation.
+
+**User Command:**
+"{USER_COMMAND}"
