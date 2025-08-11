@@ -57,7 +57,7 @@ Transform your automation ideas into working Home Assistant code with simple Eng
 5. **Add shell command to Home Assistant** (in `configuration.yaml`):
    ```yaml
    shell_command:
-     delete_temporary_automation: "ssh user@host '/path/to/delete_automation.sh'"
+     delete_temporary_automation: "/share/scripts/automation_creator/delete_automation.sh '{{ id }}'"
    ```
 
 ## 📖 Usage
