@@ -99,7 +99,7 @@ Final Automation Added to Home Assistant:
 
 ```bash
 ./automate_ai.sh "Turn on light.living_room_ceiling when binary_sensor.motion_detected is on"
-./automate_ai.sh "Turn off light.all_lights at 23:00 if input_boolean.sleep_mode is on"
+./automate_ai.sh "Turn off light.bed_lamp at 23:00 if input_boolean.sleep_mode is on"
 ./automate_ai.sh "Make light.bedroom_lights red when binary_sensor.bedroom_door is open for 5 minutes"
 ```
 
@@ -110,7 +110,7 @@ For even more natural language automation creation, integrate with [Resolve Enti
 
 ```bash
 ./send_to_automate_ai.sh "Turn on living room ceiling light when motion detected is on"
-./send_to_automate_ai.sh "Turn off all lights at 23:00 if sleep mode is on"
+./send_to_automate_ai.sh "Turn off the bed lamp at 23:00 if sleep mode is on"
 ./send_to_automate_ai.sh "Make bedroom lights red when bedroom door is open for 5 minutes"
 ```
 
