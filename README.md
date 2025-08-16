@@ -110,9 +110,9 @@ For even more natural language automation creation, integrate with [resolve_enti
 
 
 ```bash
-./automate_ai.sh "Turn on living room ceiling light when motion detected is on"
-./automate_ai.sh "Turn off all lights at 23:00 if sleep mode is on"
-./automate_ai.sh "Make bedroom lights red when bedroom door is open for 5 minutes"
+./send_to_automate_ai.sh "Turn on living room ceiling light when motion detected is on"
+./send_to_automate_ai.sh "Turn off all lights at 23:00 if sleep mode is on"
+./send_to_automate_ai.sh "Make bedroom lights red when bedroom door is open for 5 minutes"
 ```
 
 ## Contributing
