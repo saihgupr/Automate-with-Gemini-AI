@@ -9,6 +9,39 @@ Create Home Assistant automations using plain English, powered by Google’s Gem
 
 ---
 
+### Complete Workflow Example
+
+Here's a real-world example showing the entire process:
+
+**Original Command:**
+```bash
+when bedroom temperature goes above 75, notify iphone, only once
+```
+
+**Conversion after Resolve Entities:**
+```bash
+when sensor.nodemcu_temperature goes above 75, notify.mobile_app_iphone, only once
+```
+
+**Final Automation Added to Home Assistant:**
+```yaml
+- id: '1755258945'
+  alias: One-time temperature notification
+  trigger:
+    - platform: numeric_state
+      entity_id: sensor.nodemcu_temperature
+      above: '75'
+  condition: []
+  action:
+    - service: notify.mobile_app_iphone
+      data:
+        message: "Temperature above 75!"
+    - service: shell_command.delete_temporary_automation
+      data:
+        id: '1755258945'
+```
+
+
 ## Features
 
 - **Natural Language Processing**: Convert plain English to Home Assistant automations
@@ -120,43 +153,6 @@ For even more natural language automation creation, integrate with [resolve_enti
    # Instead of: ./automate_ai.sh "turn on light.living_room_ceiling_light"
    # Use: ./automate_ai.sh "$(./resolve_entities.sh 'turn on living room ceiling light')"
    ```
-
-### Complete Workflow Example
-
-Here's a real-world example showing the entire process:
-
-**Original Command:**
-```bash
-when bedroom temperature goes above 75, notify iphone, only once
-```
-
-**Conversion after Resolve Entities:**
-```bash
-when sensor.nodemcu_temperature goes above 75, notify.mobile_app_iphone, only once
-```
-
-**Final Automation Added to Home Assistant:**
-```yaml
-- id: '1755258945'
-  alias: One-time temperature notification
-  trigger:
-    - platform: numeric_state
-      entity_id: sensor.nodemcu_temperature
-      above: '75'
-  condition: []
-  action:
-    - service: notify.mobile_app_iphone
-      data:
-        message: "Temperature above 75!"
-    - service: shell_command.delete_temporary_automation
-      data:
-        id: '1755258945'
-```
-
-This example demonstrates how resolve_entities intelligently:
-- Converts "bedroom temperature" to the actual sensor entity `sensor.nodemcu_temperature`
-- Resolves "notify iphone" to the proper notification service `notify.mobile_app_iphone`
-- Preserves the "only once" intent for temporary automation creation
 
 ### Automated Integration
 
