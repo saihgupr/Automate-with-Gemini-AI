@@ -83,7 +83,7 @@ Then enter your automation command when prompted.
 | Command | Result |
 |---------|--------|
 | `"Turn on light.porch_light when binary_sensor.motion == 'on'"` | Creates a permanent automation |
-| `"Make light.bedroom_lights blue when binary_sensor.bedroom_door is open"` | Creates a temporary automation that deletes itself |
+| `"Only once, make light.bedroom_lights blue when binary_sensor.bedroom_door is open"` | Creates a temporary automation that deletes itself |
 | `"Turn off light.all_lights at 23:00"` | Creates a time-based automation |
 
 **Note**: These examples require exact entity IDs. For natural language commands, use the "Enhanced Natural Language with Resolve Entities" section below.
