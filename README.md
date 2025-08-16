@@ -1,8 +1,6 @@
 # 🤖 Automate_AI
 
-**Transform your words into Home Assistant automations instantly**
-
-Turn natural language into Home Assistant automations using Google's Gemini AI. Just describe what you want in natural language – no YAML knowledge required! Automations are automatically added to your automations.yaml and reloaded.
+Create Home Assistant automations using natural language commands powered by Google's Gemini AI. Transform your automation ideas into working Home Assistant code with simple English commands - no more YAML syntax headaches! Automations are automatically added to your automations.yaml and reloaded for immediate use.
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Shell Script](https://img.shields.io/badge/Shell%20Script-Bash-blue.svg)](https://www.gnu.org/software/bash/)
