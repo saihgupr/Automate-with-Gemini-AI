@@ -105,21 +105,13 @@ when sensor.nodemcu_temperature goes above 75, notify.mobile_app_iphone, only on
 
 Then enter your automation command when prompted.
 
-### Command Line Mode
+### Examples
 
 ```bash
 ./automate_ai.sh "Turn on light.living_room_ceiling when binary_sensor.motion_detected is on"
 ./automate_ai.sh "Turn off light.all_lights at 23:00"
 ./automate_ai.sh "Make light.bedroom_lights red when binary_sensor.bedroom_door is open for 5 minutes when input_boolean.sleep_mode on"
 ```
-
-### Examples
-
-| Command | Result |
-|---------|--------|
-| `"Turn on light.porch_light when binary_sensor.motion == 'on'"` | Creates a permanent automation |
-| `"Only once, make light.bedroom_lights blue when binary_sensor.bedroom_door is open"` | Creates a temporary automation that deletes itself |
-| `"Turn off light.all_lights at 23:00"` | Creates a time-based automation |
 
 **Note**: These examples require exact entity IDs. For natural language commands, use the "Enhanced Natural Language with Resolve Entities" section below.
 
