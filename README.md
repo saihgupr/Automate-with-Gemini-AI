@@ -56,7 +56,7 @@ Final Automation Added to Home Assistant:
 ### Prerequisites
 
 - Home Assistant instance
-- [Free Google Gemini API key](https://ai.google.dev/)
+- Free [Google Gemini API key](https://ai.google.dev/)
 - `curl`, `jq` (for JSON processing)
 
 ### Installation
@@ -114,7 +114,7 @@ For even more natural language automation creation, integrate with [Resolve Enti
 ./send_to_automate_ai.sh "Make bedroom lights red when bedroom door is open for 5 minutes"
 ```
 
-### Make Temporary Automations
+### Temporary Automations
 
 Temporary automations are a powerful feature that automatically delete themselves after running once. Perfect for one-time tasks, testing, or situations where you don't want the automation to persist.
 
@@ -144,16 +144,7 @@ Temporary automations are a powerful feature that automatically delete themselve
 - **One-time alerts**: Get notified about something specific just once
 - **Temporary monitoring**: Watch for an event over a limited time period
 - **Quick fixes**: Create temporary solutions without permanent changes
-- **Guests**: Set up temporary automations for visitors
 
-#### Setup Required
-
-Make sure you have the shell command configured in your `configuration.yaml`:
-
-```yaml
-shell_command:
-  delete_temporary_automation: /share/scripts/automate_ai/delete_automation.sh '{{ id }}'
-```
 
 ## 🤝 Contributing
 
