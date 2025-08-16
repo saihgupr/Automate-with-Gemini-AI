@@ -1,6 +1,6 @@
 # 🤖 Automate_AI
 
-Create Home Assistant automations using natural language with Google’s Gemini AI. Just describe what you want in natural language – no YAML knowledge required. Automations are saved directly to your automations.yaml file and reloaded instantly.
+Create Home Assistant automations using natural language with Google’s Gemini AI. Just describe what you want in plain English – no YAML knowledge required. Automations are saved directly to your automations.yaml file and reloaded instantly.
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Shell Script](https://img.shields.io/badge/Shell%20Script-Bash-blue.svg)](https://www.gnu.org/software/bash/)
