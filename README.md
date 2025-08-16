@@ -11,7 +11,7 @@ Turn natural language into powerful Home Assistant automations using Google's Ge
 
 ---
 
-### Workflow Example
+### Example Workflow
 
 Original Command:
 ```bash
@@ -94,15 +94,7 @@ Final Automation Added to Home Assistant:
      delete_temporary_automation: /share/scripts/automate_ai/delete_automation.sh '{{ id }}'
    ```
 
-## Usage
-
-### Interactive Mode
-
-```bash
-./automate_ai.sh
-```
-
-Then enter your automation command when prompted.
+## Usage without Resolve Entities
 
 ### Examples
 
@@ -112,9 +104,7 @@ Then enter your automation command when prompted.
 ./automate_ai.sh "Make light.bedroom_lights red when binary_sensor.bedroom_door is open for 5 minutes when input_boolean.sleep_mode on"
 ```
 
-**Note**: These examples require exact entity IDs. For natural language commands, use the "Enhanced Natural Language with Resolve Entities" section below.
-
-## Enhanced Natural Language with Resolve Entities
+## Usage with Resolve Entities
 
 For even more natural language automation creation, integrate with [resolve_entities](https://github.com/saihgupr/resolve_entities) to automatically convert natural language entity names to Home Assistant entity IDs.
 
@@ -127,98 +117,6 @@ For even more natural language automation creation, integrate with [resolve_enti
 | `"turn off the coffee maker at 10 PM"` | `"turn off switch.coffee_maker at 22:00"` | No need to know entity IDs |
 | `"set thermostat to 72 degrees when I'm home"` | `"set climate.thermostat to 72 degrees when device_tracker.my_phone == 'home'"` | Automatic domain detection |
 | `"notify my iphone that dinner is ready"` | `"notify.mobile_app_iphone that dinner is ready"` | Smart notification handling |
-
-### Setup Integration
-
-1. **Clone the resolve_entities repository:**
-   ```bash
-   git clone https://github.com/saihgupr/resolve_entities.git
-   cd resolve_entities
-   cp config.sh.example config.sh
-   # Edit config.sh with your Home Assistant details
-   chmod +x resolve_entities.sh
-   ```
-
-2. **Use resolve_entities to preprocess your commands:**
-   ```bash
-   # Instead of: ./automate_ai.sh "turn on light.living_room_ceiling_light"
-   # Use: ./automate_ai.sh "$(./resolve_entities.sh 'turn on living room ceiling light')"
-   ```
-
-### Automated Integration
-
-Create a wrapper script for seamless integration:
-
-```bash
-#!/bin/bash
-# automate_ai_natural.sh
-
-RESOLVE_ENTITIES_PATH="/path/to/resolve_entities/resolve_entities.sh"
-AUTOMATE_AI_PATH="/path/to/automate_ai/automate_ai.sh"
-
-if [ $# -eq 0 ]; then
-    echo "Please enter your automation command:"
-    read -r user_command
-else
-    user_command="$*"
-fi
-
-# Resolve entities first, then pass to automate_ai
-resolved_command=$("$RESOLVE_ENTITIES_PATH" "$user_command")
-echo "Resolved command: $resolved_command"
-"$AUTOMATE_AI_PATH" "$resolved_command"
-```
-
-### Benefits
-
-- **No Entity ID Memorization**: Use natural names like "living room light" instead of "light.living_room_ceiling_light"
-- **Smart Domain Detection**: Automatically detects the correct Home Assistant domain
-- **Notification Support**: Special handling for mobile app notifications
-- **Performance**: Caches entity data for faster resolution
-- **Fuzzy Matching**: Handles typos and variations in entity names
-
-### Examples
-
-| Command | Result |
-|---------|--------|
-| `"Turn on porch light when motion detected"` | Creates a permanent automation |
-| `"Turn the light blue for 5 minutes"` | Creates a temporary automation that deletes itself |
-| `"Turn off all lights at 11 PM"` | Creates a time-based automation |
-
-## Scripts
-
-- **`automate_ai.sh`** - Main script for creating automations
-- **`delete_automation.sh`** - Deletes automations via REST API (called by temporary automations)
-- **`cleanup_orphaned_automations.sh`** - Removes orphaned automations from HA UI
-
-## Troubleshooting
-
-### Greyed-out Automations in UI
-
-If you see greyed-out automations after temporary automations run:
-
-```bash
-# Run the cleanup script
-./cleanup_orphaned_automations.sh
-```
-
-### API Errors
-
-1. **Check your HA_TOKEN**: Ensure it's a long-lived access token with appropriate permissions
-2. **Verify HA_URL**: Make sure the URL is accessible from your script's location
-3. **Check network connectivity**: Ensure the script can reach your Home Assistant instance
-
-### YAML Validation Errors
-
-1. Check the generated YAML in the script output
-2. Ensure your `AUTOMATIONS_YAML` path is correct
-3. Verify the YAML file is writable
-
-## Security
-
-- Keep your `config.sh` file secure and don't commit it to version control
-- Use long-lived access tokens with minimal required permissions
-- Consider using SSH keys for the shell command instead of passwords
 
 ## Contributing
 
