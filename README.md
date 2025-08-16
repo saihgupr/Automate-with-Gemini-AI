@@ -133,17 +133,9 @@ Temporary automations are a powerful feature that automatically delete themselve
 #### Examples
 
 ```bash
-# One-time notifications
-./send_to_automate_ai.sh "notify my iphone when the laundry is done, only once"
-
-# Temporary lighting effects
-./send_to_automate_ai.sh "turn the bedroom light blue for 5 minutes, then turn it off"
-
-# One-time temperature alerts
-./send_to_automate_ai.sh "notify me if the temperature goes above 80 degrees, only once"
-
-# Temporary door monitoring
-./send_to_automate_ai.sh "notify me if the garage door opens in the next hour"
+./send_to_automate_ai.sh "Only once, turn on living room ceiling light when motion detected is on"
+./send_to_automate_ai.sh "Turn off the bed lamp at 23:00 if sleep mode is on, only once."
+./send_to_automate_ai.sh "Just this time, make bedroom lights red when bedroom door is open for 5 minutes"
 ```
 
 #### What Gets Created
