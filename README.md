@@ -138,32 +138,6 @@ Temporary automations are a powerful feature that automatically delete themselve
 ./send_to_automate_ai.sh "Just this time, make bedroom lights red when bedroom door is open for 5 minutes"
 ```
 
-#### What Gets Created
-
-When you create a temporary automation, it includes:
-- **Unique ID**: Automatically generated timestamp-based ID
-- **Self-delete action**: Calls `shell_command.delete_temporary_automation` after running
-- **Normal automation logic**: All your specified triggers, conditions, and actions
-
-#### Example Temporary Automation Output
-
-```yaml
-- id: '1755258945'
-  alias: One-time temperature notification
-  trigger:
-    - platform: numeric_state
-      entity_id: sensor.nodemcu_temperature
-      above: '75'
-  condition: []
-  action:
-    - service: notify.mobile_app_iphone
-      data:
-        message: "Temperature above 75!"
-    - service: shell_command.delete_temporary_automation
-      data:
-        id: '1755258945'
-```
-
 #### Use Cases
 
 - **Testing**: Try out automation ideas without cluttering your automations list
