@@ -7,17 +7,17 @@
 
 Transform your automation ideas into working Home Assistant code with simple English commands. No more YAML syntax headaches!
 
-## ✨ Features
+## Features
 
-- **🎯 Natural Language Processing**: Convert plain English to Home Assistant automations
-- **⚡ Smart Intent Detection**: Automatically detects temporary vs permanent automations
-- **🔄 Self-Cleaning**: Temporary automations delete themselves after running
-- **✅ YAML Validation**: Ensures generated code is syntactically correct
-- **🔗 Direct Integration**: Automatically adds to your `automations.yaml` and reloads HA
-- **🧹 Cleanup Tools**: Remove orphaned automations from the UI
-- **🚀 Command Line Ready**: Use interactively or with command line arguments
+- **Natural Language Processing**: Convert plain English to Home Assistant automations
+- **Smart Intent Detection**: Automatically detects temporary vs permanent automations
+- **Self-Cleaning**: Temporary automations delete themselves after running
+- **YAML Validation**: Ensures generated code is syntactically correct
+- **Direct Integration**: Automatically adds to your `automations.yaml` and reloads HA
+- **Cleanup Tools**: Remove orphaned automations from the UI
+- **Command Line Ready**: Use interactively or with command line arguments
 
-## 🚀 Quick Start
+## Quick Start
 
 ### Prerequisites
 
@@ -60,7 +60,7 @@ Transform your automation ideas into working Home Assistant code with simple Eng
      delete_temporary_automation: /share/scripts/automate_ai/delete_automation.sh '{{ id }}'
    ```
 
-## 📖 Usage
+## Usage
 
 ### Interactive Mode
 
@@ -78,7 +78,7 @@ Then enter your automation command when prompted.
 ./automate_ai.sh "Turn the bedroom light blue for 5 minutes"
 ```
 
-## 🔗 Enhanced Natural Language with Resolve Entities
+## Enhanced Natural Language with Resolve Entities
 
 For even more natural language automation creation, integrate with [resolve_entities](https://github.com/saihgupr/resolve_entities) to automatically convert natural language entity names to Home Assistant entity IDs.
 
@@ -171,11 +171,11 @@ echo "Resolved command: $resolved_command"
 
 ### Benefits
 
-- **🎯 No Entity ID Memorization**: Use natural names like "living room light" instead of "light.living_room_ceiling_light"
-- **🔍 Smart Domain Detection**: Automatically detects the correct Home Assistant domain
-- **📱 Notification Support**: Special handling for mobile app notifications
-- **⚡ Performance**: Caches entity data for faster resolution
-- **🔄 Fuzzy Matching**: Handles typos and variations in entity names
+- **No Entity ID Memorization**: Use natural names like "living room light" instead of "light.living_room_ceiling_light"
+- **Smart Domain Detection**: Automatically detects the correct Home Assistant domain
+- **Notification Support**: Special handling for mobile app notifications
+- **Performance**: Caches entity data for faster resolution
+- **Fuzzy Matching**: Handles typos and variations in entity names
 
 ### Examples
 
@@ -185,13 +185,13 @@ echo "Resolved command: $resolved_command"
 | `"Turn the light blue for 5 minutes"` | Creates a temporary automation that deletes itself |
 | `"Turn off all lights at 11 PM"` | Creates a time-based automation |
 
-## 🛠️ Scripts
+## Scripts
 
 - **`automate_ai.sh`** - Main script for creating automations
 - **`delete_automation.sh`** - Deletes automations via REST API (called by temporary automations)
 - **`cleanup_orphaned_automations.sh`** - Removes orphaned automations from HA UI
 
-## 🔧 Troubleshooting
+## Troubleshooting
 
 ### Greyed-out Automations in UI
 
@@ -214,21 +214,21 @@ If you see greyed-out automations after temporary automations run:
 2. Ensure your `AUTOMATIONS_YAML` path is correct
 3. Verify the YAML file is writable
 
-## 🔒 Security
+## Security
 
 - Keep your `config.sh` file secure and don't commit it to version control
 - Use long-lived access tokens with minimal required permissions
 - Consider using SSH keys for the shell command instead of passwords
 
-## 🤝 Contributing
+## Contributing
 
 Contributions are welcome! Please feel free to submit a Pull Request.
 
-## 📄 License
+## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-## 🙏 Acknowledgments
+## Acknowledgments
 
 - Built with [Google Gemini AI](https://ai.google.dev/)
 - Designed for [Home Assistant](https://www.home-assistant.io/)
