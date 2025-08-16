@@ -1,8 +1,17 @@
-# Automate_AI 🤖
+# 🤖 Automate_AI
 
-Create Home Assistant automations using natural language commands powered by Google's Gemini AI
+> **Create Home Assistant automations using natural language commands powered by Google's Gemini AI**
 
-Transform your automation ideas into working Home Assistant code with simple English commands. No more YAML syntax headaches!
+---
+
+**Transform your automation ideas into working Home Assistant code with simple English commands. No more YAML syntax headaches!**
+
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Shell Script](https://img.shields.io/badge/Shell%20Script-Bash-blue.svg)](https://www.gnu.org/software/bash/)
+[![Home Assistant](https://img.shields.io/badge/Home%20Assistant-Enabled-green.svg)](https://www.home-assistant.io/)
+[![Gemini AI](https://img.shields.io/badge/Gemini%20AI-Powered-orange.svg)](https://ai.google.dev/)
+
+---
 
 ## Features
 
