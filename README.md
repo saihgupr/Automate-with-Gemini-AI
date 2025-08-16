@@ -73,9 +73,9 @@ Then enter your automation command when prompted.
 ### Command Line Mode
 
 ```bash
-./automate_ai.sh "Turn on light.living_room_ceiling when binary_sensor.motion_detected == 'on'"
+./automate_ai.sh "Turn on light.living_room_ceiling when binary_sensor.motion_detected is on"
 ./automate_ai.sh "Turn off light.all_lights at 23:00"
-./automate_ai.sh "Turn light.bedroom_light blue for 5 minutes"
+./automate_ai.sh "Make light.bedroom_lights red when binary_sensor.bedroom_door is open for 5 minutes when input_boolean.sleep_mode on"
 ```
 
 ### Examples
@@ -83,10 +83,10 @@ Then enter your automation command when prompted.
 | Command | Result |
 |---------|--------|
 | `"Turn on light.porch_light when binary_sensor.motion == 'on'"` | Creates a permanent automation |
-| `"Turn light.bedroom_light blue for 5 minutes"` | Creates a temporary automation that deletes itself |
+| `"Make light.bedroom_lights blue when binary_sensor.bedroom_door is open"` | Creates a temporary automation that deletes itself |
 | `"Turn off light.all_lights at 23:00"` | Creates a time-based automation |
 
-**Note**: These examples require exact entity IDs. For natural language commands, see the "Enhanced Natural Language with Resolve Entities" section below.
+**Note**: These examples require exact entity IDs. For natural language commands, use the "Enhanced Natural Language with Resolve Entities" section below.
 
 ## Enhanced Natural Language with Resolve Entities
 
