@@ -78,6 +78,68 @@ Then enter your automation command when prompted.
 ./automate_ai.sh "Turn the bedroom light blue for 5 minutes"
 ```
 
+## 🔗 Enhanced Natural Language with Resolve Entities
+
+For even more natural language automation creation, integrate with [resolve_entities](https://github.com/saihgupr/resolve_entities) to automatically convert natural language entity names to Home Assistant entity IDs.
+
+### Setup Integration
+
+1. **Clone the resolve_entities repository:**
+   ```bash
+   git clone https://github.com/saihgupr/resolve_entities.git
+   cd resolve_entities
+   cp config.sh.example config.sh
+   # Edit config.sh with your Home Assistant details
+   chmod +x resolve_entities.sh
+   ```
+
+2. **Use resolve_entities to preprocess your commands:**
+   ```bash
+   # Instead of: ./automate_ai.sh "turn on light.living_room_ceiling_light"
+   # Use: ./automate_ai.sh "$(./resolve_entities.sh 'turn on living room ceiling light')"
+   ```
+
+### Examples with Resolve Entities
+
+| Natural Command | Resolved Command | Result |
+|-----------------|------------------|--------|
+| `"turn on living room ceiling light"` | `"turn on light.living_room_ceiling_light"` | More natural input |
+| `"turn off the coffee maker"` | `"turn off switch.coffee_maker"` | No need to know entity IDs |
+| `"set thermostat to 72 degrees"` | `"set climate.thermostat to 72 degrees"` | Automatic domain detection |
+| `"notify my iphone that dinner is ready"` | `"notify.mobile_app_iphone that dinner is ready"` | Smart notification handling |
+
+### Automated Integration
+
+Create a wrapper script for seamless integration:
+
+```bash
+#!/bin/bash
+# automate_ai_natural.sh
+
+RESOLVE_ENTITIES_PATH="/path/to/resolve_entities/resolve_entities.sh"
+AUTOMATE_AI_PATH="/path/to/automate_ai/automate_ai.sh"
+
+if [ $# -eq 0 ]; then
+    echo "Please enter your automation command:"
+    read -r user_command
+else
+    user_command="$*"
+fi
+
+# Resolve entities first, then pass to automate_ai
+resolved_command=$("$RESOLVE_ENTITIES_PATH" "$user_command")
+echo "Resolved command: $resolved_command"
+"$AUTOMATE_AI_PATH" "$resolved_command"
+```
+
+### Benefits
+
+- **🎯 No Entity ID Memorization**: Use natural names like "living room light" instead of "light.living_room_ceiling_light"
+- **🔍 Smart Domain Detection**: Automatically detects the correct Home Assistant domain
+- **📱 Notification Support**: Special handling for mobile app notifications
+- **⚡ Performance**: Caches entity data for faster resolution
+- **🔄 Fuzzy Matching**: Handles typos and variations in entity names
+
 ### Examples
 
 | Command | Result |
