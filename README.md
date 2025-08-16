@@ -96,7 +96,7 @@ Final Automation Added to Home Assistant:
 
 ## 📖 Usage
 
-## Without Resolve Entities
+### Without Resolve Entities
 
 ```bash
 ./automate_ai.sh "Turn on light.living_room_ceiling when binary_sensor.motion_detected is on"
@@ -104,7 +104,7 @@ Final Automation Added to Home Assistant:
 ./automate_ai.sh "Make light.bedroom_lights red when binary_sensor.bedroom_door is open for 5 minutes when input_boolean.sleep_mode on"
 ```
 
-## With Resolve Entities
+### With Resolve Entities
 
 For even more natural language automation creation, integrate with [resolve_entities](https://github.com/saihgupr/resolve_entities) to automatically convert natural language entity names to Home Assistant entity IDs.
 
