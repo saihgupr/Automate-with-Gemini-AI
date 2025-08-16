@@ -73,10 +73,20 @@ Then enter your automation command when prompted.
 ### Command Line Mode
 
 ```bash
-./automate_ai.sh "Turn on the living room lights when motion is detected"
-./automate_ai.sh "Turn off all lights at 11 PM"
-./automate_ai.sh "Turn the bedroom light blue for 5 minutes"
+./automate_ai.sh "Turn on light.living_room_ceiling when binary_sensor.motion_detected == 'on'"
+./automate_ai.sh "Turn off light.all_lights at 23:00"
+./automate_ai.sh "Turn light.bedroom_light blue for 5 minutes"
 ```
+
+### Examples
+
+| Command | Result |
+|---------|--------|
+| `"Turn on light.porch_light when binary_sensor.motion == 'on'"` | Creates a permanent automation |
+| `"Turn light.bedroom_light blue for 5 minutes"` | Creates a temporary automation that deletes itself |
+| `"Turn off light.all_lights at 23:00"` | Creates a time-based automation |
+
+**Note**: These examples require exact entity IDs. For natural language commands, see the "Enhanced Natural Language with Resolve Entities" section below.
 
 ## Enhanced Natural Language with Resolve Entities
 
@@ -103,9 +113,9 @@ For even more natural language automation creation, integrate with [resolve_enti
 
 | Natural Command | Resolved Command | Result |
 |-----------------|------------------|--------|
-| `"turn on living room ceiling light"` | `"turn on light.living_room_ceiling_light"` | More natural input |
-| `"turn off the coffee maker"` | `"turn off switch.coffee_maker"` | No need to know entity IDs |
-| `"set thermostat to 72 degrees"` | `"set climate.thermostat to 72 degrees"` | Automatic domain detection |
+| `"turn on living room ceiling light when motion detected"` | `"turn on light.living_room_ceiling_light when binary_sensor.motion_detected == 'on'"` | More natural input |
+| `"turn off the coffee maker at 10 PM"` | `"turn off switch.coffee_maker at 22:00"` | No need to know entity IDs |
+| `"set thermostat to 72 degrees when I'm home"` | `"set climate.thermostat to 72 degrees when device_tracker.my_phone == 'home'"` | Automatic domain detection |
 | `"notify my iphone that dinner is ready"` | `"notify.mobile_app_iphone that dinner is ready"` | Smart notification handling |
 
 ### Complete Workflow Example
