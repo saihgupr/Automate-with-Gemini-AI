@@ -114,6 +114,81 @@ For even more natural language automation creation, integrate with [Resolve Enti
 ./send_to_automate_ai.sh "Make bedroom lights red when bedroom door is open for 5 minutes"
 ```
 
+### Make Temporary Automations
+
+Temporary automations are a powerful feature that automatically delete themselves after running once. Perfect for one-time tasks, testing, or situations where you don't want the automation to persist.
+
+#### How Temporary Automations Work
+
+1. **Automatic Detection**: The AI detects when you want a "one-time" or "temporary" automation based on keywords like:
+   - "only once"
+   - "temporary"
+   - "one time"
+   - "just this time"
+
+2. **Self-Cleaning**: After the automation triggers and runs, it automatically calls a cleanup service to delete itself from Home Assistant
+
+3. **No Manual Cleanup**: No need to remember to remove the automation later - it handles itself
+
+#### Examples
+
+```bash
+# One-time notifications
+./send_to_automate_ai.sh "notify my iphone when the laundry is done, only once"
+
+# Temporary lighting effects
+./send_to_automate_ai.sh "turn the bedroom light blue for 5 minutes, then turn it off"
+
+# One-time temperature alerts
+./send_to_automate_ai.sh "notify me if the temperature goes above 80 degrees, only once"
+
+# Temporary door monitoring
+./send_to_automate_ai.sh "notify me if the garage door opens in the next hour"
+```
+
+#### What Gets Created
+
+When you create a temporary automation, it includes:
+- **Unique ID**: Automatically generated timestamp-based ID
+- **Self-delete action**: Calls `shell_command.delete_temporary_automation` after running
+- **Normal automation logic**: All your specified triggers, conditions, and actions
+
+#### Example Temporary Automation Output
+
+```yaml
+- id: '1755258945'
+  alias: One-time temperature notification
+  trigger:
+    - platform: numeric_state
+      entity_id: sensor.nodemcu_temperature
+      above: '75'
+  condition: []
+  action:
+    - service: notify.mobile_app_iphone
+      data:
+        message: "Temperature above 75!"
+    - service: shell_command.delete_temporary_automation
+      data:
+        id: '1755258945'
+```
+
+#### Use Cases
+
+- **Testing**: Try out automation ideas without cluttering your automations list
+- **One-time alerts**: Get notified about something specific just once
+- **Temporary monitoring**: Watch for an event over a limited time period
+- **Quick fixes**: Create temporary solutions without permanent changes
+- **Guests**: Set up temporary automations for visitors
+
+#### Setup Required
+
+Make sure you have the shell command configured in your `configuration.yaml`:
+
+```yaml
+shell_command:
+  delete_temporary_automation: /share/scripts/automate_ai/delete_automation.sh '{{ id }}'
+```
+
 ## 🤝 Contributing
 
 Contributions are welcome! Please feel free to submit a Pull Request.
