@@ -13,19 +13,17 @@ Turn natural language into powerful Home Assistant automations using Google's Ge
 
 ### Workflow Example
 
-Here's a real-world example showing the process:
-
-**Original Command:**
+Original Command:
 ```bash
 when bedroom temperature goes above 75, notify iphone, only once
 ```
 
-**Conversion after Resolve Entities:**
+Conversion after Resolve Entities:
 ```bash
 when sensor.nodemcu_temperature goes above 75, notify.mobile_app_iphone, only once
 ```
 
-**Final Automation Added to Home Assistant:**
+Final Automation Added to Home Assistant:
 ```yaml
 - id: '1755258945'
   alias: One-time temperature notification
