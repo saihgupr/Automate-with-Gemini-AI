@@ -146,14 +146,6 @@ Temporary automations are a powerful feature that automatically delete themselve
 - **Quick fixes**: Create temporary solutions without permanent changes
 
 
-## 🤝 Contributing
-
-Contributions are welcome! Please feel free to submit a Pull Request.
-
-## 📄 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
 ## 🙏 Acknowledgments
 
 - Built with [Google Gemini AI](https://ai.google.dev/)
