@@ -1,6 +1,8 @@
 # 🤖 Automate_AI
 
-Create Home Assistant automations using natural language commands powered by Google's Gemini AI. Describe what you want, and it turns your ideas into working code without writing YAML. Automations are saved directly to your automations.yaml file and reloaded right away.
+**Transform your words into Home Assistant automations instantly**
+
+Turn natural language into powerful Home Assistant automations using Google's Gemini AI. Just describe what you want in plain English – no YAML knowledge required!
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Shell Script](https://img.shields.io/badge/Shell%20Script-Bash-blue.svg)](https://www.gnu.org/software/bash/)
@@ -9,233 +11,260 @@ Create Home Assistant automations using natural language commands powered by Goo
 
 ---
 
-### Complete Workflow Example
+## ✨ What Makes This Special
 
-Here's a real-world example showing the entire process:
-
-**Original Command:**
-```bash
-when bedroom temperature goes above 75, notify iphone, only once
-```
-
-**Conversion after Resolve Entities:**
-```bash
-when sensor.nodemcu_temperature goes above 75, notify.mobile_app_iphone, only once
-```
-
-**Final Automation Added to Home Assistant:**
+**Before Automate_AI:**
 ```yaml
+# You had to write this complex YAML...
 - id: '1755258945'
-  alias: One-time temperature notification
+  alias: Temperature notification
   trigger:
     - platform: numeric_state
-      entity_id: sensor.nodemcu_temperature
+      entity_id: sensor.bedroom_temperature
       above: '75'
   condition: []
   action:
     - service: notify.mobile_app_iphone
       data:
-        message: "Temperature above 75!"
-    - service: shell_command.delete_temporary_automation
-      data:
-        id: '1755258945'
+        message: "Temperature is too high!"
 ```
 
+**With Automate_AI:**
+```bash
+# Just say what you want!
+./automate_ai.sh "when bedroom temperature goes above 75, notify my iPhone"
+```
 
-## Features
+## 🚀 Key Features
 
-- **Natural Language Processing**: Convert plain English to Home Assistant automations
-- **Smart Intent Detection**: Automatically detects temporary vs permanent automations
-- **Self-Cleaning**: Temporary automations delete themselves after running
-- **YAML Validation**: Ensures generated code is syntactically correct
-- **Direct Integration**: Automatically adds to your `automations.yaml` and reloads HA
-- **Cleanup Tools**: Remove orphaned automations from the UI
-- **Command Line Ready**: Use interactively or with command line arguments
+### 🧠 **Smart Natural Language Processing**
+Convert everyday language into perfect Home Assistant automations using Google's Gemini AI.
 
-## Quick Start
+### 🎯 **Intelligent Intent Detection**
+Automatically detects whether you want a one-time action or permanent automation:
+- *"Turn the lights blue for 5 minutes"* → Creates temporary automation that self-destructs
+- *"Turn on porch light when motion detected"* → Creates permanent automation
+
+### 🧹 **Self-Cleaning Automations**
+Temporary automations automatically delete themselves after running – no clutter in your HA interface.
+
+### ✅ **Built-in Validation**
+- YAML syntax validation before saving
+- Entity ID verification
+- Automatic error handling and suggestions
+
+### ⚡ **Instant Integration**
+- Saves directly to your `automations.yaml`
+- Automatically reloads Home Assistant
+- Ready to use immediately
+
+## 📋 Quick Start
 
 ### Prerequisites
 
-- Home Assistant instance
-- Google Gemini API key
-- Bash shell environment
-- `curl`, `jq` (for JSON processing)
+- Home Assistant instance with REST API enabled
+- [Free Google Gemini API key](https://ai.google.dev/) (takes 2 minutes to get)
+- Basic command line tools: `curl`, `jq`
 
 ### Installation
 
-1. **Clone the repository:**
-   ```bash
-   git clone https://github.com/saihgupr/automate_ai.git
-   cd automate_ai
-   ```
+**1. Clone and setup:**
+```bash
+git clone https://github.com/saihgupr/automate_ai.git
+cd automate_ai
+cp config.sh.example config.sh
+chmod +x *.sh
+```
 
-2. **Set up configuration:**
-   ```bash
-   cp config.sh.example config.sh
-   ```
+**2. Configure your settings:**
+Edit `config.sh` with your details:
+```bash
+GEMINI_API_KEY="your_gemini_api_key_here"
+AUTOMATIONS_YAML="/config/automations.yaml"
+HA_URL="http://your-home-assistant.local:8123"
+HA_TOKEN="your_ha_long_lived_token"
+```
 
-3. **Edit `config.sh` with your details:**
-   ```bash
-   GEMINI_API_KEY="your_gemini_api_key_here"
-   AUTOMATIONS_YAML="/config/automations.yaml"
-   HA_URL="http://your-home-assistant.local:8123"
-   HA_TOKEN="your_ha_long_lived_token"
-   ```
+**3. Add cleanup capability to Home Assistant:**
+Add this to your `configuration.yaml`:
+```yaml
+shell_command:
+  delete_temporary_automation: /share/scripts/automate_ai/delete_automation.sh '{{ id }}'
+```
 
-4. **Make scripts executable:**
-   ```bash
-   chmod +x automate_ai.sh
-   chmod +x delete_automation.sh
-   chmod +x cleanup_orphaned_automations.sh
-   ```
+**4. Test it out:**
+```bash
+./automate_ai.sh "turn on living room lights at sunset"
+```
 
-5. **Add shell command to Home Assistant** (in `configuration.yaml`):
-   ```yaml
-   shell_command:
-     delete_temporary_automation: /share/scripts/automate_ai/delete_automation.sh '{{ id }}'
-   ```
+## 💡 Usage Examples
 
-## Usage
+### Basic Usage
 
-### Interactive Mode
-
+**Interactive mode:**
 ```bash
 ./automate_ai.sh
+# Enter: "turn off all lights at 11 PM"
 ```
 
-Then enter your automation command when prompted.
-
-### Examples
-
+**Command line:**
 ```bash
-./automate_ai.sh "Turn on light.living_room_ceiling when binary_sensor.motion_detected is on"
-./automate_ai.sh "Turn off light.all_lights at 23:00"
-./automate_ai.sh "Make light.bedroom_lights red when binary_sensor.bedroom_door is open for 5 minutes when input_boolean.sleep_mode on"
+./automate_ai.sh "notify my phone when garage door opens"
 ```
 
-**Note**: These examples require exact entity IDs. For natural language commands, use the "Enhanced Natural Language with Resolve Entities" section below.
+### Real-World Examples
 
-## Enhanced Natural Language with Resolve Entities
+| What You Say | What It Creates |
+|-------------|-----------------|
+| `"turn on porch light when motion detected"` | Motion-triggered lighting |
+| `"set thermostat to 68 when I leave home"` | Location-based temperature control |
+| `"flash living room lights red when smoke detected"` | Emergency alert system |
+| `"turn off coffee maker in 30 minutes"` | Temporary timer automation |
+| `"dim bedroom lights to 20% at 10 PM"` | Scheduled ambient lighting |
 
-For even more natural language automation creation, integrate with [resolve_entities](https://github.com/saihgupr/resolve_entities) to automatically convert natural language entity names to Home Assistant entity IDs.
+## 🌟 Enhanced Natural Language (Advanced Setup)
 
+For even more natural commands, integrate with [resolve_entities](https://github.com/saihgupr/resolve_entities) to use friendly names instead of entity IDs.
 
-### Examples with Resolve Entities
+### Before resolve_entities:
+```bash
+./automate_ai.sh "turn on light.living_room_ceiling when binary_sensor.motion_detected is on"
+```
 
-| Natural Command | Resolved Command | Result |
-|-----------------|------------------|--------|
-| `"turn on living room ceiling light when motion detected"` | `"turn on light.living_room_ceiling_light when binary_sensor.motion_detected == 'on'"` | More natural input |
-| `"turn off the coffee maker at 10 PM"` | `"turn off switch.coffee_maker at 22:00"` | No need to know entity IDs |
-| `"set thermostat to 72 degrees when I'm home"` | `"set climate.thermostat to 72 degrees when device_tracker.my_phone == 'home'"` | Automatic domain detection |
-| `"notify my iphone that dinner is ready"` | `"notify.mobile_app_iphone that dinner is ready"` | Smart notification handling |
+### After resolve_entities:
+```bash
+./automate_ai.sh "turn on living room ceiling light when motion is detected"
+```
 
 ### Setup Integration
 
-1. **Clone the resolve_entities repository:**
-   ```bash
-   git clone https://github.com/saihgupr/resolve_entities.git
-   cd resolve_entities
-   cp config.sh.example config.sh
-   # Edit config.sh with your Home Assistant details
-   chmod +x resolve_entities.sh
-   ```
-
-2. **Use resolve_entities to preprocess your commands:**
-   ```bash
-   # Instead of: ./automate_ai.sh "turn on light.living_room_ceiling_light"
-   # Use: ./automate_ai.sh "$(./resolve_entities.sh 'turn on living room ceiling light')"
-   ```
-
-### Automated Integration
-
-Create a wrapper script for seamless integration:
-
+**1. Install resolve_entities:**
 ```bash
-#!/bin/bash
-# automate_ai_natural.sh
-
-RESOLVE_ENTITIES_PATH="/path/to/resolve_entities/resolve_entities.sh"
-AUTOMATE_AI_PATH="/path/to/automate_ai/automate_ai.sh"
-
-if [ $# -eq 0 ]; then
-    echo "Please enter your automation command:"
-    read -r user_command
-else
-    user_command="$*"
-fi
-
-# Resolve entities first, then pass to automate_ai
-resolved_command=$("$RESOLVE_ENTITIES_PATH" "$user_command")
-echo "Resolved command: $resolved_command"
-"$AUTOMATE_AI_PATH" "$resolved_command"
+git clone https://github.com/saihgupr/resolve_entities.git
+cd resolve_entities
+cp config.sh.example config.sh
+# Edit config.sh with your HA details
+chmod +x resolve_entities.sh
 ```
 
-### Benefits
-
-- **No Entity ID Memorization**: Use natural names like "living room light" instead of "light.living_room_ceiling_light"
-- **Smart Domain Detection**: Automatically detects the correct Home Assistant domain
-- **Notification Support**: Special handling for mobile app notifications
-- **Performance**: Caches entity data for faster resolution
-- **Fuzzy Matching**: Handles typos and variations in entity names
-
-### Examples
-
-| Command | Result |
-|---------|--------|
-| `"Turn on porch light when motion detected"` | Creates a permanent automation |
-| `"Turn the light blue for 5 minutes"` | Creates a temporary automation that deletes itself |
-| `"Turn off all lights at 11 PM"` | Creates a time-based automation |
-
-## Scripts
-
-- **`automate_ai.sh`** - Main script for creating automations
-- **`delete_automation.sh`** - Deletes automations via REST API (called by temporary automations)
-- **`cleanup_orphaned_automations.sh`** - Removes orphaned automations from HA UI
-
-## Troubleshooting
-
-### Greyed-out Automations in UI
-
-If you see greyed-out automations after temporary automations run:
-
+**2. Create a wrapper script** (`automate_natural.sh`):
 ```bash
-# Run the cleanup script
+#!/bin/bash
+RESOLVE_PATH="/path/to/resolve_entities/resolve_entities.sh"
+AUTOMATE_PATH="/path/to/automate_ai/automate_ai.sh"
+
+user_command="$*"
+resolved_command=$("$RESOLVE_PATH" "$user_command")
+echo "✅ Resolved: $resolved_command"
+"$AUTOMATE_PATH" "$resolved_command"
+```
+
+**3. Use natural language:**
+```bash
+./automate_natural.sh "turn on porch light when front door opens"
+```
+
+### Natural Language Examples
+
+| Natural Command | Auto-Resolved To | Result |
+|----------------|------------------|---------|
+| `"turn on living room light"` | `"turn on light.living_room_main"` | ✅ Works perfectly |
+| `"notify my iPhone dinner ready"` | `"notify.mobile_app_johns_iphone dinner ready"` | ✅ Smart notification |
+| `"set bedroom temp to 72"` | `"set climate.bedroom_thermostat to 72"` | ✅ Climate control |
+
+## 🛠️ Troubleshooting
+
+### Common Issues
+
+**❌ Greyed-out automations in UI:**
+```bash
+# Clean up orphaned automations
 ./cleanup_orphaned_automations.sh
 ```
 
-### API Errors
+**❌ "Entity not found" errors:**
+- Use the resolve_entities integration for natural names
+- Check entity IDs in Home Assistant's Developer Tools
 
-1. **Check your HA_TOKEN**: Ensure it's a long-lived access token with appropriate permissions
-2. **Verify HA_URL**: Make sure the URL is accessible from your script's location
-3. **Check network connectivity**: Ensure the script can reach your Home Assistant instance
+**❌ API connection errors:**
+- Verify your `HA_TOKEN` has proper permissions
+- Check that `HA_URL` is accessible
+- Test with: `curl -H "Authorization: Bearer $HA_TOKEN" "$HA_URL/api/"`
 
-### YAML Validation Errors
+**❌ YAML syntax errors:**
+- Check the generated YAML in script output
+- Ensure `AUTOMATIONS_YAML` path is correct and writable
 
-1. Check the generated YAML in the script output
-2. Ensure your `AUTOMATIONS_YAML` path is correct
-3. Verify the YAML file is writable
+### Getting Help
 
-## Security
+1. **Check the logs:** Look at the script output for detailed error messages
+2. **Test connectivity:** Verify your HA instance is reachable
+3. **Validate config:** Double-check your `config.sh` settings
+4. **Try simple commands first:** Start with basic automations before complex ones
 
-- Keep your `config.sh` file secure and don't commit it to version control
-- Use long-lived access tokens with minimal required permissions
-- Consider using SSH keys for the shell command instead of passwords
+## 📚 Advanced Features
 
-## Contributing
+### Automation Types
 
-Contributions are welcome! Please feel free to submit a Pull Request.
+**Permanent Automations:**
+- Triggered by events, schedules, or conditions
+- Remain active until manually disabled
+- Example: *"turn on lights when motion detected"*
 
-## License
+**Temporary Automations:**
+- Execute once and self-destruct
+- Perfect for timers and one-off tasks
+- Example: *"turn off TV in 30 minutes"*
+
+### Command Patterns
+
+The AI understands various command structures:
+- **Time-based:** *"at 6 AM"*, *"every weekday at sunrise"*, *"in 2 hours"*
+- **Event-based:** *"when door opens"*, *"if temperature above 75"*
+- **Conditional:** *"only when home"*, *"if lights are off"*
+- **Actions:** *"turn on/off"*, *"set to"*, *"notify"*, *"toggle"*
+
+## 🔧 Utility Scripts
+
+- **`automate_ai.sh`** - Main automation creator
+- **`delete_automation.sh`** - Removes automations via REST API
+- **`cleanup_orphaned_automations.sh`** - Cleans up UI orphans
+
+## 🔒 Security Best Practices
+
+- Store `config.sh` securely and add it to `.gitignore`
+- Use Home Assistant long-lived tokens with minimal required permissions
+- Consider running scripts from a dedicated service account
+- Regularly rotate your API keys and tokens
+
+## 🤝 Contributing
+
+We love contributions! Here's how you can help:
+
+1. **Fork the repository**
+2. **Create a feature branch:** `git checkout -b amazing-feature`
+3. **Make your changes and test thoroughly**
+4. **Submit a pull request with a clear description**
+
+### Ideas for contributions:
+- Support for additional AI models
+- Web interface for easier usage
+- Integration with other home automation platforms
+- Enhanced error handling and validation
+
+## 📄 License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-## Acknowledgments
+## 🙏 Acknowledgments
 
-- Built with [Google Gemini AI](https://ai.google.dev/)
-- Designed for [Home Assistant](https://www.home-assistant.io/)
-- Inspired by the need for simpler automation creation
+- **[Google Gemini AI](https://ai.google.dev/)** - Powers the natural language processing
+- **[Home Assistant](https://www.home-assistant.io/)** - The amazing home automation platform
+- **The Home Assistant Community** - For endless inspiration and support
 
 ---
 
+
 **Made with ❤️ for the Home Assistant community**
 
+[⭐ Star this repo](https://github.com/saihgupr/automate_ai) • [🐛 Report issues](https://github.com/saihgupr/automate_ai/issues) • [💡 Request features](https://github.com/saihgupr/automate_ai/discussions)
