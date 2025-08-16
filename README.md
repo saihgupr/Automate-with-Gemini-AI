@@ -92,6 +92,16 @@ Then enter your automation command when prompted.
 
 For even more natural language automation creation, integrate with [resolve_entities](https://github.com/saihgupr/resolve_entities) to automatically convert natural language entity names to Home Assistant entity IDs.
 
+
+### Examples with Resolve Entities
+
+| Natural Command | Resolved Command | Result |
+|-----------------|------------------|--------|
+| `"turn on living room ceiling light when motion detected"` | `"turn on light.living_room_ceiling_light when binary_sensor.motion_detected == 'on'"` | More natural input |
+| `"turn off the coffee maker at 10 PM"` | `"turn off switch.coffee_maker at 22:00"` | No need to know entity IDs |
+| `"set thermostat to 72 degrees when I'm home"` | `"set climate.thermostat to 72 degrees when device_tracker.my_phone == 'home'"` | Automatic domain detection |
+| `"notify my iphone that dinner is ready"` | `"notify.mobile_app_iphone that dinner is ready"` | Smart notification handling |
+
 ### Setup Integration
 
 1. **Clone the resolve_entities repository:**
@@ -108,15 +118,6 @@ For even more natural language automation creation, integrate with [resolve_enti
    # Instead of: ./automate_ai.sh "turn on light.living_room_ceiling_light"
    # Use: ./automate_ai.sh "$(./resolve_entities.sh 'turn on living room ceiling light')"
    ```
-
-### Examples with Resolve Entities
-
-| Natural Command | Resolved Command | Result |
-|-----------------|------------------|--------|
-| `"turn on living room ceiling light when motion detected"` | `"turn on light.living_room_ceiling_light when binary_sensor.motion_detected == 'on'"` | More natural input |
-| `"turn off the coffee maker at 10 PM"` | `"turn off switch.coffee_maker at 22:00"` | No need to know entity IDs |
-| `"set thermostat to 72 degrees when I'm home"` | `"set climate.thermostat to 72 degrees when device_tracker.my_phone == 'home'"` | Automatic domain detection |
-| `"notify my iphone that dinner is ready"` | `"notify.mobile_app_iphone that dinner is ready"` | Smart notification handling |
 
 ### Complete Workflow Example
 
