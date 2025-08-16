@@ -42,7 +42,7 @@ Final Automation Added to Home Assistant:
 ```
 
 
-## Features
+## ✨ Features
 
 - **Natural Language Processing**: Convert plain English to Home Assistant automations
 - **Smart Intent Detection**: Automatically detects temporary vs permanent automations
@@ -52,7 +52,7 @@ Final Automation Added to Home Assistant:
 - **Cleanup Tools**: Remove orphaned automations from the UI
 - **Command Line Ready**: Use interactively or with command line arguments
 
-## Quick Start
+## 🚀 Quick Start
 
 ### Prerequisites
 
@@ -94,9 +94,9 @@ Final Automation Added to Home Assistant:
      delete_temporary_automation: /share/scripts/automate_ai/delete_automation.sh '{{ id }}'
    ```
 
-## Usage without Resolve Entities
+## 📖 Usage
 
-### Examples
+## Without Resolve Entities
 
 ```bash
 ./automate_ai.sh "Turn on light.living_room_ceiling when binary_sensor.motion_detected is on"
@@ -104,7 +104,7 @@ Final Automation Added to Home Assistant:
 ./automate_ai.sh "Make light.bedroom_lights red when binary_sensor.bedroom_door is open for 5 minutes when input_boolean.sleep_mode on"
 ```
 
-## Usage with Resolve Entities
+## With Resolve Entities
 
 For even more natural language automation creation, integrate with [resolve_entities](https://github.com/saihgupr/resolve_entities) to automatically convert natural language entity names to Home Assistant entity IDs.
 
