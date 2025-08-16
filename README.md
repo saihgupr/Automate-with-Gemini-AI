@@ -1,4 +1,4 @@
-# 🤖 Automate_AI
+# 🤖 Automate With Gemini AI
 
 Create Home Assistant automations using natural language, powered by Google’s Gemini AI.
 Describe your automation in plain English—no YAML required. Automations are saved directly to your automations.yaml file and reloaded instantly.
