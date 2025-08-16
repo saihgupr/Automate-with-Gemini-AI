@@ -115,15 +115,15 @@ For even more natural language automation creation, integrate with [resolve_enti
 ./send_to_automate_ai.sh "Make bedroom lights red when bedroom door is open for 5 minutes"
 ```
 
-## Contributing
+## 🤝 Contributing
 
 Contributions are welcome! Please feel free to submit a Pull Request.
 
-## License
+## 📄 License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-## Acknowledgments
+## 🙏 Acknowledgments
 
 - Built with [Google Gemini AI](https://ai.google.dev/)
 - Designed for [Home Assistant](https://www.home-assistant.io/)
