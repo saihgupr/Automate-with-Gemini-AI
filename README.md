@@ -2,7 +2,7 @@
 
 **Transform your words into Home Assistant automations instantly**
 
-Turn natural language into powerful Home Assistant automations using Google's Gemini AI. Just describe what you want in plain English – no YAML knowledge required!
+Turn natural language into Home Assistant automations using Google's Gemini AI. Just describe what you want in plain English – no YAML knowledge required! Automations are automatically added to your automations.yaml and reloaded for immediate use.
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Shell Script](https://img.shields.io/badge/Shell%20Script-Bash-blue.svg)](https://www.gnu.org/software/bash/)
@@ -88,7 +88,7 @@ Final Automation Added to Home Assistant:
    chmod +x cleanup_orphaned_automations.sh
    ```
 
-5. **Add shell command to Home Assistant** (in `configuration.yaml`):
+5. **Add shell command to Home Assistant** (for temporary automations):
    ```yaml
    shell_command:
      delete_temporary_automation: /share/scripts/automate_ai/delete_automation.sh '{{ id }}'
