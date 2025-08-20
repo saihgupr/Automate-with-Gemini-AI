@@ -153,13 +153,13 @@ Temporary automations are a powerful feature that automatically delete themselve
 
 ## 🚀 Alfred Workflow
 
-For even easier automation creation, we've included an Alfred workflow that integrates seamlessly with the script. Simply type your automation request in Alfred and it will be processed automatically.
+For even easier automation creation, we've included an Alfred workflow that integrates seamlessly with Automate with Gemini AI. Simply type your automation request in Alfred and it will be processed automatically.
 
 ![Alfred Workflow](https://i.imgur.com/lUICXlp.png)
 
 The Alfred workflow provides:
 - **Quick Access**: Create automations directly from Alfred's search bar
-- **Seamless Integration**: Works with your existing Automate_AI setup
+- **Seamless Integration**: Works with your existing Automate with Gemini AI setup
 - **Instant Results**: Get feedback on automation creation status
 
 ## 🔒 Security
