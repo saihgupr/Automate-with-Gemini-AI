@@ -153,7 +153,7 @@ Temporary automations are a powerful feature that automatically delete themselve
 
 ## 🚀 Alfred Workflow
 
-For even easier automation creation, we've included an Alfred workflow that integrates seamlessly with Automate_AI. Simply type your automation request in Alfred and it will be processed automatically.
+For even easier automation creation, we've included an Alfred workflow that integrates seamlessly with the script. Simply type your automation request in Alfred and it will be processed automatically.
 
 ![Alfred Workflow](https://i.imgur.com/lUICXlp.png)
 
@@ -161,8 +161,6 @@ The Alfred workflow provides:
 - **Quick Access**: Create automations directly from Alfred's search bar
 - **Seamless Integration**: Works with your existing Automate_AI setup
 - **Instant Results**: Get feedback on automation creation status
-
-To use the Alfred workflow, ensure you have Automate_AI properly configured and the Alfred workflow installed in your Alfred preferences.
 
 ## 🔒 Security
 
