@@ -89,7 +89,24 @@ validate_yaml() {
   tmp_file=$(mktemp)
   trap 'rm -f "$tmp_file"' EXIT
   echo "$yaml_content" >"$tmp_file"
-  if yamllint "$tmp_file"; then
+  
+  # Run yamllint and capture both output and exit code
+  local yamllint_output
+  local yamllint_exit_code
+  yamllint_output=$(yamllint "$tmp_file" 2>&1)
+  yamllint_exit_code=$?
+  
+  # Filter out document-start warnings but preserve other output
+  local filtered_output
+  filtered_output=$(echo "$yamllint_output" | grep -v "document-start" || true)
+  
+  # If there's any remaining output after filtering, show it
+  if [ -n "$filtered_output" ]; then
+    echo "$filtered_output"
+  fi
+  
+  # Check if yamllint succeeded (exit code 0) or only had document-start warnings
+  if [ "$yamllint_exit_code" -eq 0 ] || [ -z "$filtered_output" ]; then
     log "SUCCESS: Generated YAML syntax is valid."
     return 0
   else
@@ -104,7 +121,10 @@ append_to_automations() {
     log "ERROR: Automations file not found at '$AUTOMATIONS_YAML'."
     return 1
   fi
-  echo -e "\n$yaml_output" >>"$AUTOMATIONS_YAML"
+  # Clean the YAML output and add a single newline before the automation
+  local cleaned_yaml
+  cleaned_yaml=$(echo "$yaml_output" | sed -e 's/[[:space:]]*$//' -e '/^[[:space:]]*$/d')
+  echo -e "\n$cleaned_yaml" >>"$AUTOMATIONS_YAML"
   log "SUCCESS: Automation appended to $AUTOMATIONS_YAML."
 }
 
@@ -173,6 +193,9 @@ main() {
   local timestamp
   timestamp=$(date +%s%3N)
   yaml_output=$(echo "$yaml_output" | sed "s|TIMESTAMP_PLACEHOLDER|$timestamp|g")
+  
+  # Clean up common YAML formatting issues
+  yaml_output=$(echo "$yaml_output" | sed -e 's/,\([^ ]\)/, \1/g' -e 's/[[:space:]]*$//' -e '/^[[:space:]]*$/d')
 
   if [[ "$yaml_output" == "AMBIGUOUS" ]]; then
     log "ERROR: The command was ambiguous. Please be more specific."

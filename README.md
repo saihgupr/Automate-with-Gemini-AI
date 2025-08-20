@@ -1,29 +1,62 @@
-# Automate_AI 🤖
+# 🤖 Automate with Gemini AI
 
-> Create Home Assistant automations using natural language commands powered by Google's Gemini AI
+Create Home Assistant automations using natural language, powered by Google’s Gemini AI.
+Describe your automation in plain English—no YAML required. Automations are saved directly to your automations.yaml file and reloaded instantly.
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Shell Script](https://img.shields.io/badge/Shell%20Script-Bash-blue.svg)](https://www.gnu.org/software/bash/)
+[![Home Assistant](https://img.shields.io/badge/Home%20Assistant-Enabled-green.svg)](https://www.home-assistant.io/)
+[![Gemini AI](https://img.shields.io/badge/Gemini%20AI-Powered-orange.svg)](https://ai.google.dev/)
 
-Transform your automation ideas into working Home Assistant code with simple English commands. No more YAML syntax headaches!
+---
+
+### Example Workflow
+
+Original Command:
+```bash
+when bedroom temperature goes above 75, notify iphone, only once
+```
+
+Conversion after Resolve Entities:
+```bash
+when sensor.nodemcu_temperature goes above 75, notify.mobile_app_iphone, only once
+```
+
+Final Automation Added to Home Assistant:
+```yaml
+- id: '1755258945'
+  alias: One-time temperature notification
+  trigger:
+    - platform: numeric_state
+      entity_id: sensor.nodemcu_temperature
+      above: '75'
+  condition: []
+  action:
+    - service: notify.mobile_app_iphone
+      data:
+        message: "Temperature above 75!"
+    - service: shell_command.delete_temporary_automation
+      data:
+        id: '1755258945'
+```
+
 
 ## ✨ Features
 
-- **🎯 Natural Language Processing**: Convert plain English to Home Assistant automations
-- **⚡ Smart Intent Detection**: Automatically detects temporary vs permanent automations
-- **🔄 Self-Cleaning**: Temporary automations delete themselves after running
-- **✅ YAML Validation**: Ensures generated code is syntactically correct
-- **🔗 Direct Integration**: Automatically adds to your `automations.yaml` and reloads HA
-- **🧹 Cleanup Tools**: Remove orphaned automations from the UI
-- **🚀 Command Line Ready**: Use interactively or with command line arguments
+- **Natural Language Processing**: Convert plain English to Home Assistant automations
+- **Smart Intent Detection**: Automatically detects temporary vs permanent automations
+- **Self-Cleaning**: Temporary automations delete themselves after running
+- **YAML Validation**: Ensures generated code is syntactically correct
+- **Direct Integration**: Automatically adds to your `automations.yaml` and reloads HA
+- **Cleanup Tools**: Remove orphaned automations from the UI
+- **Command Line Ready**: Use interactively or with command line arguments
 
 ## 🚀 Quick Start
 
 ### Prerequisites
 
 - Home Assistant instance
-- Google Gemini API key
-- Bash shell environment
+- Free [Google Gemini API key](https://ai.google.dev/)
 - `curl`, `jq` (for JSON processing)
 
 ### Installation
@@ -54,7 +87,7 @@ Transform your automation ideas into working Home Assistant code with simple Eng
    chmod +x cleanup_orphaned_automations.sh
    ```
 
-5. **Add shell command to Home Assistant** (in `configuration.yaml`):
+5. **Add shell command to Home Assistant** (for temporary automations):
    ```yaml
    shell_command:
      delete_temporary_automation: /share/scripts/automate_ai/delete_automation.sh '{{ id }}'
@@ -62,52 +95,55 @@ Transform your automation ideas into working Home Assistant code with simple Eng
 
 ## 📖 Usage
 
-### Interactive Mode
+### Without Resolve Entities
 
 ```bash
-./automate_ai.sh
+./automate_ai.sh "Turn on light.living_room_ceiling when binary_sensor.motion_detected is on"
+./automate_ai.sh "Turn off light.bed_lamp at 23:00 if input_boolean.sleep_mode is on"
+./automate_ai.sh "Make light.bedroom_lights red when binary_sensor.bedroom_door is open for 5 minutes"
 ```
 
-Then enter your automation command when prompted.
+### With Resolve Entities
 
-### Command Line Mode
+For even more natural language automation creation, integrate with [Resolve Entities](https://github.com/saihgupr/resolve_entities) to automatically convert natural language entity names to Home Assistant entity IDs.
+
 
 ```bash
-./automate_ai.sh "Turn on the living room lights when motion is detected"
-./automate_ai.sh "Turn off all lights at 11 PM"
-./automate_ai.sh "Turn the bedroom light blue for 5 minutes"
+./send_to_automate_ai.sh "Turn on living room ceiling light when motion detected is on"
+./send_to_automate_ai.sh "Turn off the bed lamp at 23:00 if sleep mode is on"
+./send_to_automate_ai.sh "Make bedroom lights red when bedroom door is open for 5 minutes"
 ```
 
-### Examples
+### Temporary Automations
 
-| Command | Result |
-|---------|--------|
-| `"Turn on porch light when motion detected"` | Creates a permanent automation |
-| `"Turn the light blue for 5 minutes"` | Creates a temporary automation that deletes itself |
-| `"Turn off all lights at 11 PM"` | Creates a time-based automation |
+Temporary automations are a powerful feature that automatically delete themselves after running once. Perfect for one-time tasks, testing, or situations where you don't want the automation to persist.
 
-## 🛠️ Scripts
+#### How Temporary Automations Work
 
-- **`automate_ai.sh`** - Main script for creating automations
-- **`delete_automation.sh`** - Deletes automations via REST API (called by temporary automations)
-- **`cleanup_orphaned_automations.sh`** - Removes orphaned automations from HA UI
+1. **Automatic Detection**: The AI detects when you want a "one-time" or "temporary" automation based on keywords like:
+   - "only once"
+   - "temporary"
+   - "one time"
+   - "just this time"
 
-## 🔧 Troubleshooting
+2. **Self-Cleaning**: After the automation triggers and runs, it automatically calls a cleanup service to delete itself from Home Assistant
 
-### Greyed-out Automations in UI
+3. **No Manual Cleanup**: No need to remember to remove the automation later - it handles itself
 
-If you see greyed-out automations after temporary automations run:
+#### Examples
 
 ```bash
-# Run the cleanup script
-./cleanup_orphaned_automations.sh
+./send_to_automate_ai.sh "Only once, turn on living room ceiling light when motion detected is on"
+./send_to_automate_ai.sh "Turn off the bed lamp at 23:00 if sleep mode is on, only once."
+./send_to_automate_ai.sh "Just this time, make bedroom lights red when bedroom door is open for 5 minutes"
 ```
 
-### API Errors
+#### Use Cases
 
-1. **Check your HA_TOKEN**: Ensure it's a long-lived access token with appropriate permissions
-2. **Verify HA_URL**: Make sure the URL is accessible from your script's location
-3. **Check network connectivity**: Ensure the script can reach your Home Assistant instance
+- **Testing**: Try out automation ideas without cluttering your automations list
+- **One-time alerts**: Get notified about something specific just once
+- **Temporary monitoring**: Watch for an event over a limited time period
+- **Quick fixes**: Create temporary solutions without permanent changes
 
 ### YAML Validation Errors
 
@@ -126,6 +162,8 @@ The Alfred workflow provides:
 - **Seamless Integration**: Works with your existing Automate_AI setup
 - **Instant Results**: Get feedback on automation creation status
 
+To use the Alfred workflow, ensure you have Automate_AI properly configured and the Alfred workflow installed in your Alfred preferences.
+
 ## 🔒 Security
 
 - Keep your `config.sh` file secure and don't commit it to version control
@@ -139,8 +177,6 @@ Contributions are welcome! Please feel free to submit a Pull Request.
 ## 📄 License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-
 ## 🙏 Acknowledgments
 
 - Built with [Google Gemini AI](https://ai.google.dev/)
