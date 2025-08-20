@@ -115,6 +115,17 @@ If you see greyed-out automations after temporary automations run:
 2. Ensure your `AUTOMATIONS_YAML` path is correct
 3. Verify the YAML file is writable
 
+## 🚀 Alfred Workflow
+
+For even easier automation creation, we've included an Alfred workflow that integrates seamlessly with Automate_AI. Simply type your automation request in Alfred and it will be processed automatically.
+
+![Alfred Workflow](https://i.imgur.com/lUICXlp.png)
+
+The Alfred workflow provides:
+- **Quick Access**: Create automations directly from Alfred's search bar
+- **Seamless Integration**: Works with your existing Automate_AI setup
+- **Instant Results**: Get feedback on automation creation status
+
 ## 🔒 Security
 
 - Keep your `config.sh` file secure and don't commit it to version control
@@ -128,6 +139,7 @@ Contributions are welcome! Please feel free to submit a Pull Request.
 ## 📄 License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
 
 ## 🙏 Acknowledgments
 
