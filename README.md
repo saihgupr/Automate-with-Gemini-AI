@@ -98,9 +98,9 @@ Final Automation Added to Home Assistant:
 ### Without Resolve Entities
 
 ```bash
-./automate_ai.sh "Turn on light.living_room_ceiling when binary_sensor.motion_detected is on"
+./automate_ai.sh "Turn on light.living_room_ceiling when binary_sensor.shelf_motion is on"
 ./automate_ai.sh "Turn off light.bed_lamp at 23:00 if input_boolean.sleep_mode is on"
-./automate_ai.sh "Make light.bedroom_lights red when binary_sensor.bedroom_door is open for 5 minutes"
+./automate_ai.sh "Turn the light.bedroom_lights blue and 50% when binary_sensor.bedroom_door is opened after sunset"
 ```
 
 ### With Resolve Entities
@@ -109,9 +109,9 @@ For even more natural language automation creation, integrate with [Resolve Enti
 
 
 ```bash
-./send_to_automate_ai.sh "Turn on living room ceiling light when motion detected is on"
+./send_to_automate_ai.sh "Turn on living room ceiling light when shelf motion is on"
 ./send_to_automate_ai.sh "Turn off the bed lamp at 23:00 if sleep mode is on"
-./send_to_automate_ai.sh "Make bedroom lights red when bedroom door is open for 5 minutes"
+./send_to_automate_ai.sh "Turn the bedroom lights blue and 50% when bedroom door is opened after sunset"
 ```
 
 ### Temporary Automations
@@ -133,9 +133,9 @@ Temporary automations are a powerful feature that automatically delete themselve
 #### Examples
 
 ```bash
-./send_to_automate_ai.sh "Only once, turn on living room ceiling light when motion detected is on"
+./send_to_automate_ai.sh "Only once, turn on living room ceiling light when shelf motion is on"
 ./send_to_automate_ai.sh "Turn off the bed lamp at 23:00 if sleep mode is on, only once."
-./send_to_automate_ai.sh "Just this time, make bedroom lights red when bedroom door is open for 5 minutes"
+./send_to_automate_ai.sh "Just this time, make bedroom lights red when bedroom door is opened"
 ```
 
 #### Use Cases
