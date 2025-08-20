@@ -56,7 +56,7 @@ Final Automation Added to Home Assistant:
 ### Prerequisites
 
 - Home Assistant instance
-- Free [Google Gemini API key](https://ai.google.dev/)
+- Free [Google Gemini API key](https://aistudio.google.com/apikey)
 - `curl`, `jq` (for JSON processing)
 
 ### Installation
