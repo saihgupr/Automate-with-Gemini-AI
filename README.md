@@ -105,7 +105,7 @@ Final Automation Added to Home Assistant:
 
 ### With Resolve Entities
 
-For even more natural language automation creation, integrate with [Resolve Entities](https://github.com/saihgupr/resolve_entities) to automatically convert natural language entity names to Home Assistant entity IDs.
+For even more natural language automation creation, integrate with [Resolve Entities](https://github.com/saihgupr/resolve_entities) to automatically convert natural language entity names to Home Assistant entity IDs. I made it as a separate script so you can run it wherever it fits best.
 
 
 ```bash
