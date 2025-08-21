@@ -158,12 +158,6 @@ The Alfred workflow provides:
 - **Seamless Integration**: Works with your existing Automate with Gemini AI setup
 - **Instant Results**: Get feedback on automation creation status
 
-## 🔒 Security
-
-- Keep your `config.sh` file secure and don't commit it to version control
-- Use long-lived access tokens with minimal required permissions
-- Consider using SSH keys for the shell command instead of passwords
-
 ## 🤝 Contributing
 
 Contributions are welcome! Please feel free to submit a Pull Request.
