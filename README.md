@@ -17,7 +17,7 @@ Original Command:
 when bedroom temperature goes above 75, notify iphone, only once
 ```
 
-Conversion after Resolve Entities:
+Converts entity names into entity IDs using Resolve Entities
 ```bash
 when sensor.nodemcu_temperature goes above 75, notify.mobile_app_iphone, only once
 ```
@@ -146,12 +146,6 @@ Temporary automations are a powerful feature that automatically delete themselve
 - **One-time alerts**: Get notified about something specific just once
 - **Temporary monitoring**: Watch for an event over a limited time period
 - **Quick fixes**: Create temporary solutions without permanent changes
-
-### YAML Validation Errors
-
-1. Check the generated YAML in the script output
-2. Ensure your `AUTOMATIONS_YAML` path is correct
-3. Verify the YAML file is writable
 
 ## 🚀 Alfred Workflow
 
