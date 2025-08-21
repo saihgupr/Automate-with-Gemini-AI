@@ -22,7 +22,7 @@ Conversion after Resolve Entities:
 when sensor.nodemcu_temperature goes above 75, notify.mobile_app_iphone, only once
 ```
 
-Final Automation Added to Home Assistant:
+Automation Added to Home Assistant:
 ```yaml
 - id: '1755258945'
   alias: One-time temperature notification
@@ -97,6 +97,8 @@ Final Automation Added to Home Assistant:
 
 ### Without Resolve Entities
 
+Enter what you want the automation to do, but make sure to use entity IDs instead of names.
+
 ```bash
 ./automate_ai.sh "Turn on light.living_room_ceiling when binary_sensor.shelf_motion is on"
 ./automate_ai.sh "Turn off light.bed_lamp at 23:00 if input_boolean.sleep_mode is on"
@@ -105,7 +107,7 @@ Final Automation Added to Home Assistant:
 
 ### With Resolve Entities
 
-For even more natural language automation creation, integrate with [Resolve Entities](https://github.com/saihgupr/resolve_entities) to automatically convert natural language entity names to Home Assistant entity IDs. I made it as a separate script so you can run it wherever it fits best.
+For even more natural language automation creation, integrate with [Resolve Entities](https://github.com/saihgupr/resolve_entities) to automatically convert entity names to Home Assistant entity IDs. I made it as a separate script so you can run it wherever it fits best.
 
 
 ```bash
