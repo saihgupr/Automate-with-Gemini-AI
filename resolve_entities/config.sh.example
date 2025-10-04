@@ -1,0 +1,10 @@
+#!/bin/bash
+
+# Home Assistant Configuration
+# ---------------------------
+# Your Home Assistant URL (e.g., http://homeassistant.local:8123)
+HA_URL="http://your-home-assistant-ip:8123"
+
+# Your Home Assistant Long-Lived Access Token
+# Generate this in Home Assistant: Profile > Long-Lived Access Tokens
+HA_TOKEN="your-long-lived-access-token-here"

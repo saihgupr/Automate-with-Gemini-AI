@@ -1,0 +1,11 @@
+#!/bin/bash
+
+# Rename this file to "config.sh" and fill in your details.
+
+GEMINI_API_KEY="YOUR_GEMINI_API_KEY"
+
+AUTOMATIONS_YAML="/config/automations.yaml"
+
+HA_URL="http://homeassistant.local:8123"
+
+HA_TOKEN="YOUR_HA_TOKEN"
