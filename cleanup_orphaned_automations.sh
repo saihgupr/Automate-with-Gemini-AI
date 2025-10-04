@@ -2,7 +2,7 @@
 
 # cleanup_orphaned_automations.sh
 # Removes automations from Home Assistant that are no longer in the YAML file.
-# This helps clean up automations that appear greyed out in the Home Assistant UI.
+# This helps clean up automations that appear greyed out in the UI.
 
 set -e
 
